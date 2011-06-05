@@ -51,10 +51,10 @@ class WpSocialBookmarkingLight
     function link_raw( $url ){
         return $url;
     }
-    function link( $url, $alt, $icon, $width, $height ){
+    function link( $url, $alt, $icon, $width, $height , $add_cls=""){
         $width = $width ? "width='$width'" : "";
         $height = $height ? "height='$height'" : "";
-        return "<a href='{$url}' title='{$alt}' rel=nofollow class='wp_social_bookmarking_light_a' target=_blank>"
+        return "<a href='{$url}' title='{$alt}' rel=nofollow class='wp_social_bookmarking_light_a".(empty($add_cls) ? "" : " ${add_cls}")."' target=_blank>"
                ."<img src='{$icon}' alt='{$alt}' title='{$alt}' $width $height class='wp_social_bookmarking_light_img' />"
                ."</a>";
     }
@@ -358,7 +358,7 @@ class WpSocialBookmarkingLight
         $url = "http://www.facebook.com/share.php?u={$this->encode_url}&t={$this->encode_title}";
         $alt = __( "Share on Facebook", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN );
         $icon = WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL."/facebook.png";
-        return $this->link( $url, $alt, $icon, 16, 16 );
+        return $this->link( $url, $alt, $icon, 16, 16, "facebook-img");
     }
     
     /**
